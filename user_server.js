@@ -33,23 +33,40 @@ function putUser(req, res) {
         res.send("not found").status(404)
     }
 }
-function postUser(req,res){
-    try{
-        let newUser ={id:"", name:"",email:"",phone:""}
-        newUser.id=req.body.id
-        newUser.name=req.body.name
-        newUser.email=req.body.email
-        newUser.phone=req.body.phone
-        users.push(newUser)
-        res.send(newUser).status(200)
+function postUser(req, res) {
+    try {
+        let newUser = { id: "", name: "", email: "", phone: "" };
 
+        // Check if all fields exist in the request body
+        if (!req.body.id || !req.body.name || !req.body.email || !req.body.phone) {
+            return res.send("Missing fields").status(400);
+        }
+
+        // Check if the email is in the correct format
+        if (!isValidEmail(req.body.email)) {
+            return res.send("Invalid email format").status(400);
+        }
+
+        newUser.id = req.body.id;
+        newUser.name = req.body.name;
+        newUser.email = req.body.email;
+        newUser.phone = req.body.phone;
+
+        users.push(newUser);
+        return res.send(newUser).status(200);
+    } catch {
+        return res.send("User not found").status(404);
     }
-    catch{
-             res.send("not found this user").status(404)
-    }
+}
+
+// Function to validate email format
+function isValidEmail(email) {
+    return /\S+@\S+\.\S+/.test(email);
+}
+
 function deleteUser(req, res) {
     try {
-        let index = users.findIndex(x => x.id = req.params.id)
+        let index = users.findIndex(x => x.id == req.params.id)
         users.splice(index, 1)
         res.send(users).status(200)
     }
@@ -59,6 +76,5 @@ function deleteUser(req, res) {
     }
 }
 module.exports = { gatAllUsers, getById, putUser, postUser, deleteUser }  
-}
 
  
