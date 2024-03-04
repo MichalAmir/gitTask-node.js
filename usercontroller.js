@@ -28,6 +28,7 @@ function putUser(req, res) {
     try {
         let index = users.findIndex(x => x.id == req.params.id)
         users[index].name = req.query.newName || 'null'
+        users[index].phone = req.query.newPhone || 'null'
         res.send(users[index]).status(200)
     }
     catch
@@ -37,9 +38,11 @@ function putUser(req, res) {
 }
 function postUser(req,res){
     try{
-        let newUser ={id:"", name:""}
+        let newUser ={id:"", name:"",email:"",phone:""}
         newUser.id=req.body.id
         newUser.name=req.body.name
+        newUser.email=req.body.email
+        newUser.phone=req.body.phone
         users.push(newUser)
         res.send(newUser).status(200)
 
