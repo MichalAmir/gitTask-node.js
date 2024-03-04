@@ -1,4 +1,9 @@
-function gatAllUsers(req, res) {
+const users = [
+    { id: "1", name: "Avigail", email: "Avigail@gmail.com", phone: "0548559877" },
+    { id: "2", name: "shulamit", email: "shulamit@gmail.com", phone: "0587658877" },
+    { id: "3", name: "Michal", email: "Michal@gmail.com", phone: "054987877" }
+];
+function getAllUsers(req, res) {
     try {
         res.send(users);
     }
@@ -75,6 +80,5 @@ function deleteUser(req, res) {
 
     }
 }
-module.exports = { gatAllUsers, getById, putUser, postUser, deleteUser }  
+module.exports = { getAllUsers, getById, putUser, postUser, deleteUser }  
 
- 

@@ -1,18 +1,25 @@
 const express = require("express")
-const app = express()
-const port = 8080
-const userController= require('.user_server')
- 
-const users=[{ id:"1",name:"Avigail",email:"Avigail@gmail.com",phone:"0548559877"},
-{ id:"2",name:"shulamit",email:"shulamit@gmail.com",phone:"0587658877"},
-{ id:"3",name:"Michal",email:"Michal@gmail.com",phone:"054987877"},]
+;const router = express.Router();
+const userServer=require('./user_server')
+function getAllUsers(req, res) 
+{
+    userServer.getAllUsers(req, res)
+}
+function getById(req, res) 
+{
+    userServer.getById(req, res)
+}
+function putUser(req, res) 
+{
+    userServer.putUser(req, res)
+}
+function postUser(req, res) 
+{
+    userServer.postUser(req, res)
+}
+function deleteUser(req, res) 
+{
+    userServer.deleteUser(req, res)
+}
+module.exports = {getAllUsers,getById,putUser,postUser,deleteUser};
 
-app.get('/users',userController.getAllUsers)
-
-app.get('/users/:id',userController.getById)
-
-app.put('/users',userController.put)
-
-app.post('/users/:newName',userController.post)
-
-app.delete('/users/:id',userController.Delete)
