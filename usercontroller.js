@@ -16,7 +16,3 @@ app.put('/users',userController.put)
 app.post('/users/:newName',userController.post)
 
 app.delete('/users/:id',userController.Delete)
-
-app.listen(port, () => {
-    console.log("server is runing!!")
-})
