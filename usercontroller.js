@@ -1,65 +1,19 @@
+const express = require("express")
+const app = express()
+const port = 8080
+ 
+const users=[{ id:"1",name:"NameForExample",email:"example@gmail.com",phone:"0548559877"}]
 
+app.get( '/users',userController.getAllUsers)
 
-function gatAllUsers(req, res) {
-    try {
-        res.send(users);
-    }
-    catch {
-        res.send("not found").status(404)
-    }
-}
+app.get( '/users/:id',userController.getById)
 
-function getById(req, res) {
-    try {
-        let index = users.findIndex(x => x.id == req.params.id)
-        if (index == -1) {
-            res.send("not found").status(404)
-        }
-        else {
-            res.send(users[index]).status(200)
-        }
-    }
-    catch {
-        res.send("not found this user").status(404)
+app.put('/users',userController.put)
 
-    }
-}
-function putUser(req, res) {
-    try {
-        let index = users.findIndex(x => x.id == req.params.id)
-        users[index].name = req.query.newName || 'null'
-        users[index].phone = req.query.newPhone || 'null'
-        res.send(users[index]).status(200)
-    }
-    catch
-    {
-        res.send("not found").status(404)
-    }
-}
-function postUser(req,res){
-    try{
-        let newUser ={id:"", name:"",email:"",phone:""}
-        newUser.id=req.body.id
-        newUser.name=req.body.name
-        newUser.email=req.body.email
-        newUser.phone=req.body.phone
-        users.push(newUser)
-        res.send(newUser).status(200)
+app.post('/users/:newName',userController.post)
 
-    }
-    catch{
-             res.send("not found this user").status(404)
-    }
-function deleteUser(req, res) {
-    try {
-        let index = users.findIndex(x => x.id = req.params.id)
-        users.splice(index, 1)
-        res.send(users).status(200)
-    }
-    catch {
-        res.send("cant to delete").status(404)
+app.delete('/users/:id',userController.Delete)
 
-    }
-}
-module.exports = { gatAllUsers, getById, putUser, postUser, deleteUser }  
-}
+app.listen(port, () => {
+    console.log("server is runing!!")
+})
