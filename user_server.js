@@ -8,7 +8,6 @@ function gatAllUsers(req, res) {
         res.send("not found").status(404)
     }
 }
-
 function getById(req, res) {
     try {
         let index = users.findIndex(x => x.id == req.params.id)
