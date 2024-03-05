@@ -1,4 +1,3 @@
-
 //create user model 
 const mongoose = require('mongoose')
 
@@ -9,4 +8,4 @@ const UsersSchema=new mongoose.Schema({
     phone:String
 })
 
-module.exports=mongoose.model('Uswwer',UsersSchema)
+module.exports=mongoose.model('usersDB',UsersSchema)
