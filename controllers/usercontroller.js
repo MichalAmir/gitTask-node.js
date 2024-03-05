@@ -1,5 +1,7 @@
+
+
 const express = require("express")
-;const router = express.Router();
+const router = express.Router();
 const userServer=require('../Models/user_server')
 function getAllUsers(req, res) 
 {
