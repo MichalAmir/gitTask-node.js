@@ -14,7 +14,7 @@ describe('users service', () => {
        mockingoose(usersModel).toReturn([
         {
           id: '123456789',
-          name: "mich",
+          name: "michal",
           email: "chana@gmail.com",
           phone: "0547558677",
         },
