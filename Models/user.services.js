@@ -15,7 +15,6 @@ async function postUser(id, name, email, phone) {
   return user;
 }
 
-
 async function putUser(id, name, email, phone) {
   const updatedUser = await User.findOneAndUpdate(
     { userId: id }, // update by userId field
