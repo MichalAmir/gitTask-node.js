@@ -25,24 +25,6 @@ test('Posts a new user', async () => {
 });
 
 
-// const testServices = require("../services/user.services")
-
-// test('Returns a user by id',async () => {
-//     expect(testServices.getById("2")).toBe({
-       
-
-// id:
-// "1",
-// name:
-// "shulamit",
-// email:
-// "shula@gmail.com",
-// phone:
-// "0556786670"
-//     });
-// });
-
-
 test('Returns a user by id', async () => {
     const expectedUser = {
         id:"123456",name:"avigail",email:"avi@gmail.com",phone:"055879654"
