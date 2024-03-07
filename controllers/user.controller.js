@@ -68,4 +68,7 @@ async function deleteUser(req, res) {
   }
 
 
+<<<<<<< HEAD
+module.exports = { getAllUsers, getById, putUser, postUser, deleteUser };
+=======
 module.exports = { getAllUsers, getById, putUser, postUser, deleteUser };
