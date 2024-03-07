@@ -66,10 +66,5 @@ async function deleteUser(req, res) {
       res.status(500).json({ message: 'Failed to delete user' });
     }
   }
-
-
-<<<<<<< HEAD
+  
 module.exports = { getAllUsers, getById, putUser, postUser, deleteUser };
-=======
-module.exports = { getAllUsers, getById, putUser, postUser, deleteUser };
->>>>>>> a5327127425c39c7ab42259cdf7fdde5c1bc14ff
