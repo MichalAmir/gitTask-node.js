@@ -40,6 +40,7 @@ async function postUser(req, res) {
   }
 }
 
+
 async function putUser(req, res) {
   try {
     const { userId } = req.params;
