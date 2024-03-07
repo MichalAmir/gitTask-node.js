@@ -30,5 +30,3 @@ async function deleteUser(id) {
 }
 
 module.exports = { getAllUsers, getById, putUser, postUser, deleteUser };
-
- 
