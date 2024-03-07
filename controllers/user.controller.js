@@ -1,6 +1,6 @@
 const express = require("express")
 const router = express.Router();
-const userServer = require('../services/user.services')
+const userServer = require('../models/user.services')
 const User = require("../models/users");
 
 async function getAllUsers(req, res) {
@@ -94,4 +94,8 @@ async function deleteUser(req, res) {
     }
   }
   
+<<<<<<< HEAD
 module.exports = { getAllUsers, getById, putUser, postUser, deleteUser };
+=======
+module.exports = { getAllUsers, getById, putUser, postUser, deleteUser };
+>>>>>>> main
