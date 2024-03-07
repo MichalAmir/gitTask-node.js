@@ -32,6 +32,32 @@ async function getById(req, res) {
 async function postUser(req, res) {
   try {
     const { id, name, email, phone } = req.body;
+
+    if (!id || !name || !email || !phone) {
+      return res.status(400).json({ message: 'All fields are mandatory: id, name, email, phone' });
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^\d{10}$/; // Assuming a 10-digit phone number format
+    const idRegex = /^[A-Za-z0-9]{6}$/; // Assuming a 6-character alphanumeric ID format
+
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ message: 'Invalid email format' });
+    }
+
+    if (!phoneRegex.test(phone)) {
+      return res.status(400).json({ message: 'Invalid phone number format' });
+    }
+
+    if (!idRegex.test(id)) {
+      return res.status(400).json({ message: 'Invalid ID format' });
+    }
+
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ message: 'Email already in use' });
+    }
+
     const newusers = await userServer.postUser(id, name, email, phone);
     res.json(newusers);
   } catch (error) {
@@ -39,6 +65,7 @@ async function postUser(req, res) {
     res.status(500).json({ message: 'Failed to create user' });
   }
 }
+
 
 
 async function putUser(req, res) {
