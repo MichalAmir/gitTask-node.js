@@ -9,11 +9,9 @@ const {
 } = require('../services/user.services');
 
 describe('users service', () => {
-  // הפונקציות לפי השירות והפונקציות שלו
   describe('fetchUsers', () => {
      it ('should return the list of users', async () => {
-      // הגדרת המודל של המשתמשים להחזרת ערכים מקומיים במקום מסד הנתונים
-      mockingoose(usersModel).toReturn([
+       mockingoose(usersModel).toReturn([
         {
           id: '123456789',
           name: "mich",
@@ -28,10 +26,10 @@ describe('users service', () => {
         },
       ], 'find');
        const results = await getAllUsers();
-      // בדיקת תוצאה 
-      expect(results[0].email).toEqual('chana@gmail.com');
+       expect(results[0].email).toEqual('chana@gmail.com');
     });
   });
+  
   describe('fetchUser', () => {
     it('should return a user', async () => {
        mockingoose(usersModel).toReturn({
