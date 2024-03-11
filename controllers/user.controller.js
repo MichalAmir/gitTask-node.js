@@ -1,6 +1,6 @@
 const express = require("express")
 const router = express.Router();
-const userServer = require('../models/user.services')
+const userServer = require('../services/user.services')
 const User = require("../models/users");
 
 async function getAllUsers(req, res) {
@@ -39,7 +39,7 @@ async function postUser(req, res) {
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const phoneRegex = /^\d{10}$/; // Assuming a 10-digit phone number format
-    const idRegex = /^[A-Za-z0-9]{6}$/; // Assuming a 6-character alphanumeric ID format
+    //const idRegex = /^[A-Za-z0-9]{6}$/; // Assuming a 6-character alphanumeric ID format
 
     if (!emailRegex.test(email)) {
       return res.status(400).json({ message: 'Invalid email format' });
@@ -49,9 +49,9 @@ async function postUser(req, res) {
       return res.status(400).json({ message: 'Invalid phone number format' });
     }
 
-    if (!idRegex.test(id)) {
-      return res.status(400).json({ message: 'Invalid ID format' });
-    }
+    // if (!idRegex.test(id)) {
+    //   return res.status(400).json({ message: 'Invalid ID format' });
+    // }
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
