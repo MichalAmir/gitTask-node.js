@@ -1,50 +1,33 @@
-const User = require("../models/users");
+const User = require("./users");
 
-const getAllUsers = () => User.find();
+async function getAllUsers() {
+  const users = await User.find();
+  return users;
+}
 
-const getById = (id) => User.findOne({ id });
+async function getById(id) {
+  const user = await User.findOne({ id });
+  return user;
+}
 
-const postUser = ({ id, name, email, phone }) => User.create({ id, name, email, phone });
+async function postUser(id, name, email, phone) {
+  const newUser = new User({ id, name, email, phone });
+  await newUser.save();
+  return newUser;
+}
 
-const putUser = (id, name, email, phone) => User.findOneAndUpdate(
-  { id },
-  { name, email, phone },
-  { new: true }
-);
+async function putUser(id, name, email, phone) {
+  const updatedUser = await User.findOneAndUpdate(
+    { id: id }, // update by user id field
+    { $set: { name, email, phone } }, 
+    { new: true }
+  );
+  return updatedUser;
+}
 
-const deleteUser = (id) => User.findOneAndDelete({ id });
+async function deleteUser(id) {
+  const deletedUser = await User.findOneAndDelete({ id });
+  return deletedUser;
+}
 
 module.exports = { getAllUsers, getById, putUser, postUser, deleteUser };
-// const User = require("../models/users");
-
-// async function getAllUsers() {
-//   const users = await User.find();
-//   return users;
-// }
-
-// async function getById(id) {
-//   const user = await User.findOne({ id });
-//   return user;
-// }
-
-// async function postUser(id, name, email, phone) {
-//   const user = await User.create({ id, name, email, phone });
-//   return user;
-// }
-
-
-// async function putUser(id, name, email, phone) {
-//   const updatedUser = await User.findOneAndUpdate(
-//     { userId: id }, // update by userId field
-//     { name, email, phone },
-//     { new: true }
-//   );
-//   return updatedUser;
-// }
-
-// async function deleteUser(id) {
-//   const deletedUser = await User.findOneAndDelete({ id });
-//   return deletedUser;
-// }
-
-// module.exports = { getAllUsers, getById, putUser, postUser, deleteUser };
